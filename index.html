@@ -10,11 +10,15 @@
     <header class="topbar">
       <div>
         <p class="eyebrow">Resume Studio</p>
-        <h1>简历生成器</h1>
+        <h1 data-i18n="appTitle">简历生成器</h1>
       </div>
       <div class="topbar-actions">
-        <button class="secondary-button" id="loadExampleButton" type="button">填入示例</button>
-        <button class="primary-button" id="generateButton" type="button">生成简历</button>
+        <div class="language-toggle" role="group" aria-label="Language">
+          <button class="language-button active" id="langZhButton" type="button" data-lang="zh">中文</button>
+          <button class="language-button" id="langEnButton" type="button" data-lang="en">English</button>
+        </div>
+        <button class="secondary-button" id="loadExampleButton" type="button" data-i18n="loadExample">填入示例</button>
+        <button class="primary-button" id="generateButton" type="button" data-i18n="generate">生成简历</button>
       </div>
     </header>
 
@@ -22,109 +26,109 @@
       <section class="workspace" aria-labelledby="editor-title">
         <div class="panel-heading">
           <div>
-            <h2 id="editor-title">填写信息</h2>
-            <p>选择模板，补充基本信息和经历，生成后可下载。</p>
+            <h2 id="editor-title" data-i18n="editorTitle">填写信息</h2>
+            <p data-i18n="editorHelp">选择模板，补充基本信息和经历，生成后可下载。</p>
           </div>
           <span class="status-pill" id="statusText" role="status">等待填写</span>
         </div>
 
         <form class="editor-form" id="resumeForm">
           <fieldset>
-            <legend>模板</legend>
+            <legend data-i18n="templateLegend">模板</legend>
             <div class="template-grid" role="radiogroup" aria-label="简历模板">
               <label class="template-option active" data-template-card="clean">
                 <input type="radio" name="template" value="clean" checked>
-                <span class="template-name">清爽通用</span>
-                <span class="template-meta">适合校招、转岗、通用投递</span>
+                <span class="template-name" data-template-name="clean">清爽通用</span>
+                <span class="template-meta" data-template-meta="clean">适合校招、转岗、通用投递</span>
               </label>
               <label class="template-option" data-template-card="sidebar">
                 <input type="radio" name="template" value="sidebar">
-                <span class="template-name">侧栏重点</span>
-                <span class="template-meta">突出技能、证书、工具栈</span>
+                <span class="template-name" data-template-name="sidebar">侧栏重点</span>
+                <span class="template-meta" data-template-meta="sidebar">突出技能、证书、工具栈</span>
               </label>
               <label class="template-option" data-template-card="executive">
                 <input type="radio" name="template" value="executive">
-                <span class="template-name">专业商务</span>
-                <span class="template-meta">适合资深岗位、咨询、运营</span>
+                <span class="template-name" data-template-name="executive">专业商务</span>
+                <span class="template-meta" data-template-meta="executive">适合资深岗位、咨询、运营</span>
               </label>
               <label class="template-option" data-template-card="campus">
                 <input type="radio" name="template" value="campus">
-                <span class="template-name">校招简洁</span>
-                <span class="template-meta">适合学生、实习、校园招聘</span>
+                <span class="template-name" data-template-name="campus">校招简洁</span>
+                <span class="template-meta" data-template-meta="campus">适合学生、实习、校园招聘</span>
               </label>
               <label class="template-option" data-template-card="tech">
                 <input type="radio" name="template" value="tech">
-                <span class="template-name">技术项目</span>
-                <span class="template-meta">突出技能栈、项目和交付结果</span>
+                <span class="template-name" data-template-name="tech">技术项目</span>
+                <span class="template-meta" data-template-meta="tech">突出技能栈、项目和交付结果</span>
               </label>
               <label class="template-option" data-template-card="data">
                 <input type="radio" name="template" value="data">
-                <span class="template-name">数据分析</span>
-                <span class="template-meta">强调指标、工具和分析成果</span>
+                <span class="template-name" data-template-name="data">数据分析</span>
+                <span class="template-meta" data-template-meta="data">强调指标、工具和分析成果</span>
               </label>
               <label class="template-option" data-template-card="product">
                 <input type="radio" name="template" value="product">
-                <span class="template-name">产品运营</span>
-                <span class="template-meta">适合增长、活动、用户运营岗位</span>
+                <span class="template-name" data-template-name="product">产品运营</span>
+                <span class="template-meta" data-template-meta="product">适合增长、活动、用户运营岗位</span>
               </label>
               <label class="template-option" data-template-card="consulting">
                 <input type="radio" name="template" value="consulting">
-                <span class="template-name">咨询金融</span>
-                <span class="template-meta">正式稳重，突出结构化表达</span>
+                <span class="template-name" data-template-name="consulting">咨询金融</span>
+                <span class="template-meta" data-template-meta="consulting">正式稳重，突出结构化表达</span>
               </label>
               <label class="template-option" data-template-card="creative">
                 <input type="radio" name="template" value="creative">
-                <span class="template-name">创意内容</span>
-                <span class="template-meta">适合设计、新媒体、内容岗位</span>
+                <span class="template-name" data-template-name="creative">创意内容</span>
+                <span class="template-meta" data-template-meta="creative">适合设计、新媒体、内容岗位</span>
               </label>
             </div>
           </fieldset>
 
           <div class="field-row">
-            <label for="targetRole">目标岗位</label>
-            <input id="targetRole" name="targetRole" type="text" placeholder="例如：数据分析实习生">
+            <label for="targetRole" data-i18n="targetRole">目标岗位</label>
+            <input id="targetRole" name="targetRole" type="text" data-placeholder="targetRolePlaceholder" placeholder="例如：数据分析实习生">
           </div>
 
           <div class="two-column">
             <div class="field-row">
-              <label for="fullName">姓名</label>
-              <input id="fullName" name="fullName" type="text" placeholder="例如：林嘉宁">
+              <label for="fullName" data-i18n="fullName">姓名</label>
+              <input id="fullName" name="fullName" type="text" data-placeholder="fullNamePlaceholder" placeholder="例如：林嘉宁">
             </div>
             <div class="field-row">
-              <label for="location">城市</label>
-              <input id="location" name="location" type="text" placeholder="例如：上海">
+              <label for="location" data-i18n="location">城市</label>
+              <input id="location" name="location" type="text" data-placeholder="locationPlaceholder" placeholder="例如：上海">
             </div>
           </div>
 
           <div class="two-column">
             <div class="field-row">
-              <label for="phone">电话</label>
+              <label for="phone" data-i18n="phone">电话</label>
               <input id="phone" name="phone" type="tel" placeholder="138 0000 0000">
             </div>
             <div class="field-row">
-              <label for="email">邮箱</label>
+              <label for="email" data-i18n="email">邮箱</label>
               <input id="email" name="email" type="email" placeholder="name@example.com">
             </div>
           </div>
 
           <div class="field-row">
-            <label for="education">教育经历</label>
-            <textarea id="education" name="education" rows="3" placeholder="学校 / 专业 / 学历 / 时间 / 亮点课程或成绩"></textarea>
+            <label for="education" data-i18n="education">教育经历</label>
+            <textarea id="education" name="education" rows="3" data-placeholder="educationPlaceholder" placeholder="学校 / 专业 / 学历 / 时间 / 亮点课程或成绩"></textarea>
           </div>
 
           <div class="field-row">
-            <label for="experience">实习或项目经历</label>
-            <textarea id="experience" name="experience" rows="7" placeholder="每段经历可以写：公司或项目、角色、时间、做了什么、结果如何。"></textarea>
+            <label for="experience" data-i18n="experience">实习或项目经历</label>
+            <textarea id="experience" name="experience" rows="7" data-placeholder="experiencePlaceholder" placeholder="每段经历可以写：公司或项目、角色、时间、做了什么、结果如何。"></textarea>
           </div>
 
           <div class="field-row">
-            <label for="skills">技能与工具</label>
-            <textarea id="skills" name="skills" rows="3" placeholder="例如：Python、SQL、Excel、Tableau、沟通协作、英文读写"></textarea>
+            <label for="skills" data-i18n="skills">技能与工具</label>
+            <textarea id="skills" name="skills" rows="3" data-placeholder="skillsPlaceholder" placeholder="例如：Python、SQL、Excel、Tableau、沟通协作、英文读写"></textarea>
           </div>
 
           <div class="field-row">
-            <label for="awards">证书、奖项或其他亮点</label>
-            <textarea id="awards" name="awards" rows="3" placeholder="可选：竞赛、证书、奖学金、作品链接等"></textarea>
+            <label for="awards" data-i18n="awards">证书、奖项或其他亮点</label>
+            <textarea id="awards" name="awards" rows="3" data-placeholder="awardsPlaceholder" placeholder="可选：竞赛、证书、奖学金、作品链接等"></textarea>
           </div>
         </form>
       </section>
@@ -132,12 +136,12 @@
       <aside class="preview-panel" aria-labelledby="preview-title">
         <div class="panel-heading preview-heading">
           <div>
-            <h2 id="preview-title">简历预览</h2>
-            <p>生成后可保存为 HTML，或打印为 PDF。</p>
+            <h2 id="preview-title" data-i18n="previewTitle">简历预览</h2>
+            <p data-i18n="previewHelp">生成后可保存为 HTML，或打印为 PDF。</p>
           </div>
           <div class="download-actions">
-            <button class="secondary-button" id="downloadButton" type="button">下载 HTML</button>
-            <button class="secondary-button" id="printButton" type="button">保存 PDF</button>
+            <button class="secondary-button" id="downloadButton" type="button" data-i18n="downloadHtml">下载 HTML</button>
+            <button class="secondary-button" id="printButton" type="button" data-i18n="savePdf">保存 PDF</button>
           </div>
         </div>
         <article class="resume-paper template-clean" id="resumePreview" aria-live="polite"></article>

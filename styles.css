@@ -73,6 +73,29 @@ button {
   gap: 0.5rem;
 }
 
+.language-toggle {
+  display: inline-flex;
+  min-height: 2.5rem;
+  padding: 0.15rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+}
+
+.language-button {
+  border: 0;
+  border-radius: 6px;
+  padding: 0.4rem 0.65rem;
+  color: var(--muted);
+  background: transparent;
+  font-weight: 800;
+}
+
+.language-button.active {
+  color: #ffffff;
+  background: var(--accent);
+}
+
 .primary-button,
 .secondary-button {
   min-height: 2.5rem;
